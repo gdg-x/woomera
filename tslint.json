@@ -84,7 +84,9 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "no-namespace": false,
+    "interface-over-type-literal": false
   },
   "rulesDirectory": [
     "codelyzer"
