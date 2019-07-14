@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "withgdg": {
+      "hosting": {
+        "woomera": [
+          "withgdg"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "withgdg"
+  }
+}

@@ -117,8 +117,13 @@
               "devServerTarget": "woomera:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "woomera"
 }
