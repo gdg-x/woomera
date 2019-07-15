@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-list>
+          <div *ngFor="let chapter of nearbyChapters$ | async; last as last">
+            <a mat-list-item [href]="'https://www.meetup.com/'+chapter.$key" target="_blank">
+              <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+              <h3 matLine>{{chapter.name}}</h3>
+              <p matLine>{{chapter.city}} - {{chapter.region}}</p>
+            </a>
+            <mat-divider *ngIf="!last"></mat-divider>
+          </div>
+          <a mat-list-item *ngIf="(nearbyChapters$ | async)?.length === 0" target="_blank"
+            href="https://developers.google.com/community/gdg/organizers/apply/">
+            <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+            <h3 matLine>There are no GDG chapters near you</h3>
+            <p matLine>Why not start one?</p>
+          </a>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</div>
