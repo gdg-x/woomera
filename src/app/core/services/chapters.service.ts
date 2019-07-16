@@ -15,7 +15,7 @@ export class ChaptersService {
     this._collection = new GeoFirestore(firestore.firestore).collection('chapters');
   }
 
-  public getNear(center: firebase.firestore.GeoPoint, radius = 10): Observable<WoomeraTypes.Chapter[]> {
+  public getNear(center: firebase.firestore.GeoPoint, radius = 25): Observable<WoomeraTypes.Chapter[]> {
     return from(this._collection.near({ center, radius }).get().then((snapshot) => {
       return snapshot.docs
         .sort((a, b) => a.distance - b.distance)

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 
@@ -14,21 +13,32 @@ import WoomeraTypes from '@types';
   styleUrls: ['./nearby-chapters.component.scss']
 })
 export class NearbyChaptersComponent implements OnInit {
-  private _nearbyChapters$: Observable<WoomeraTypes.Chapter[]> = of([]);
+  private _nearbyChapters$: Observable<WoomeraTypes.Chapter[]> = of();
+  private _error = false;
 
   constructor(private _chapters: ChaptersService, private _location: LocationService, private _toast: ToastService) { }
 
   ngOnInit() {
-    this._nearbyChapters$ = this._location.getCurrentPosition().pipe(
-      catchError((error) => {
-        this._toast.make('Couldn\'t find your location');
-        return of(new firebase.firestore.GeoPoint(0, 0));
-      }),
-      mergeMap((coords) => this._chapters.getNear(coords))
-    );
+    this.fetchChapters();
+  }
+
+  get error(): boolean {
+    return this._error;
   }
 
   get nearbyChapters$(): Observable<WoomeraTypes.Chapter[]> {
     return this._nearbyChapters$;
+  }
+
+  public fetchChapters(): void {
+    this._error = false;
+    this._nearbyChapters$ = this._location.getCurrentPosition().pipe(
+      catchError(() => {
+        this._error = true;
+        this._toast.make('Couldn\'t find your location');
+        return of(null);
+      }),
+      mergeMap((coords) => (coords) ? this._chapters.getNear(coords) : of(null))
+    );
   }
 }
