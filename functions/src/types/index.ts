@@ -7,7 +7,19 @@ export namespace WoomeraTypes {
     region: string;
     coordinates: admin.firestore.GeoPoint;
     name: string;
-    updatedOn: number;
+    updatedOn?: number;
+    $key: string;
+  };
+  export type ChapterSimple = {
+    city: string;
+    country: string;
+    region: string;
+    coordinates: {
+      lat: number;
+      lng: number;
+    };
+    name: string;
+    updatedOn?: number;
     $key: string;
   };
   export type ChapterRequestData = {
