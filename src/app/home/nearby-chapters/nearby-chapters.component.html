@@ -1,22 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <mat-card>
-        <mat-card-title>Nearby Chapters</mat-card-title>
-        <div *ngIf="!error && !(nearbyChapters$ | async); then loading"></div>
-        <div *ngIf="!error && (nearbyChapters$ | async)?.length > 0; then listChapters"></div>
-        <div *ngIf="!error && (nearbyChapters$ | async)?.length === 0; then noChapters"></div>
-        <div *ngIf="error; then errorTemplate"></div>
-      </mat-card>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <mat-card-title>Nearby Chapters</mat-card-title>
+          <div *ngIf="!error && !(nearbyChapters$ | async); then loading"></div>
+          <div *ngIf="!error && (nearbyChapters$ | async)?.length > 0; then listChapters"></div>
+          <div *ngIf="!error && (nearbyChapters$ | async)?.length === 0; then noChapters"></div>
+          <div *ngIf="error; then errorTemplate"></div>
+        </mat-card>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <ng-template #listChapters>
   <mat-card-content>
     <mat-list>
       <div *ngFor="let chapter of nearbyChapters$ | async; last as last">
-        <a mat-list-item [href]="'https://www.meetup.com/'+chapter.$key" target="_blank">
+        <a mat-list-item [routerLink]="['/', 'chapter', chapter.$key]">
           <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
           <h3 matLine>{{chapter.name}}</h3>
           <p matLine>{{chapter.city}} - {{chapter.region}}</p>

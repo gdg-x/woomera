@@ -16,7 +16,7 @@ export class NearbyChaptersComponent implements OnInit {
   private _nearbyChapters$: Observable<WoomeraTypes.Chapter[]> = of();
   private _error = false;
 
-  constructor(private _chapters: ChaptersService, private _location: LocationService, private _toast: ToastService) { }
+  constructor(private _cs: ChaptersService, private _ls: LocationService, private _toast: ToastService) { }
 
   ngOnInit() {
     this.fetchChapters();
@@ -32,13 +32,13 @@ export class NearbyChaptersComponent implements OnInit {
 
   public fetchChapters(): void {
     this._error = false;
-    this._nearbyChapters$ = this._location.getCurrentPosition().pipe(
+    this._nearbyChapters$ = this._ls.getCurrentPosition().pipe(
       catchError(() => {
         this._error = true;
         this._toast.make('Couldn\'t find your location');
         return of(null);
       }),
-      mergeMap((coords) => (coords) ? this._chapters.getNear(coords) : of(null))
+      mergeMap((coords) => (coords) ? this._cs.findNear(coords) : of(null))
     );
   }
 }

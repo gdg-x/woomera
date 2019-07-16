@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AngularFireModule, } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -20,6 +21,7 @@ const PROVIDERS = [
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule

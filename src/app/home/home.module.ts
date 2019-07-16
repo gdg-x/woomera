@@ -4,15 +4,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AgmCoreModule } from '@agm/core';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+
 import { NearbyChaptersComponent } from './nearby-chapters/nearby-chapters.component';
+import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    NearbyChaptersComponent
+    NearbyChaptersComponent,
+    ChaptersMapComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,8 @@ import { NearbyChaptersComponent } from './nearby-chapters/nearby-chapters.compo
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AgmCoreModule
   ]
 })
 export class HomeModule { }
