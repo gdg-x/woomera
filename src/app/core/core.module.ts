@@ -28,7 +28,7 @@ const PROVIDERS = [
     HttpClientJsonpModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [
     { provide: FirestoreSettingsToken, useValue: {} }

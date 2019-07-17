@@ -23,6 +23,38 @@
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
         ]
       }
+    }, {
+      "name": "meetup",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "https://secure.meetupstatic.com/photos/**"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "storage",
+      "urls": [
+        "https://firebasestorage.googleapis.com/v0/b/withgdg.appspot.com/o/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "7d",
+        "strategy": "performance"
+      }
+    }, {
+      "name": "meetup",
+      "urls": [
+        "https://api.meetup.com/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1h",
+        "strategy": "performance"
+      }
     }
   ]
 }
