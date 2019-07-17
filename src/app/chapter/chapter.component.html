@@ -1,0 +1,50 @@
+<section class="banner" [style.background-image]="(about?.key_photo?.highres_link) | bannerImage"></section>
+
+<section class="over-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <mat-card-title>{{ about?.name || 'GDG' }}</mat-card-title>
+          <mat-card-subtitle>{{ about?.localized_location }}</mat-card-subtitle>
+          <mat-card-content>
+            <div [innerHTML]="about?.description"></div>
+          </mat-card-content>
+          <mat-card-actions>
+            <a mat-button target="_blank" [href]="about?.link || 'https://www.meetup.com/pro/gdg'">JOIN MEETUP</a>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <mat-card-title>Events</mat-card-title>
+          <mat-card-content>
+            <mat-list>
+              <div *ngFor="let event of events; last as last">
+                <a mat-list-item target="_blank" [href]="event.link">
+                  <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+                  <h3 matLine>{{event.name}}</h3>
+                  <p matLine>{{event.time | date}}</p>
+                </a>
+                <mat-divider *ngIf="!last"></mat-divider>
+              </div>
+              <div *ngIf="!events || events.length === 0">
+                <mat-list-item>
+                  <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+                  <h3 matLine>No upcoming events</h3>
+                </mat-list-item>
+              </div>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

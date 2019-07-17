@@ -64,6 +64,19 @@ a {
 section {
   padding-top: 8px;
   padding-bottom: 8px;
+
+  &.over-banner {
+    margin-top: -48px;
+  }
+}
+
+.banner {
+  padding: 0;
+  background: no-repeat #000000;
+  background-size: cover;
+  background-position: center;
+  height: 33vw;
+  width: 100%;
 }
 
 .card-container {

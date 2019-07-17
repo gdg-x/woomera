@@ -9,8 +9,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  private _isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Small)
-    .pipe(map(result => !(result.matches)));
+  private _isHandset$: Observable<boolean> = this._breakpointObserver.observe(['(max-width: 599px)'])
+    .pipe(map(result => result.matches));
 
   constructor(private _breakpointObserver: BreakpointObserver) { }
 

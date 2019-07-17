@@ -5,6 +5,8 @@
     "paths": {
       "@core": ["src/app/core/core.module"],
       "@environment": ["src/environments/environment"],
+      "@guards/*": ["src/app/core/guards/*"],
+      "@shared": ["src/app/shared/shared.module"],
       "@services/*": ["src/app/core/services/*"],
       "@types": ["functions/src/types/index"]
     },
