@@ -21,7 +21,7 @@
         <a mat-list-item [routerLink]="['/', 'chapter', chapter.$key]">
           <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
           <h3 matLine>{{chapter.name}}</h3>
-          <p matLine>{{chapter.city}} - {{chapter.region}}</p>
+          <p matLine>{{chapter.city}}, {{chapter.country}}</p>
         </a>
         <mat-divider *ngIf="!last"></mat-divider>
       </div>

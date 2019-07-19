@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h2>There are more! ({{ total }} more exactly)</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-6">
+      <mat-form-field class="full">
+        <input matInput placeholder="Search to see all our chapters below!" [(ngModel)]="name" (keyup)="search(name)">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let chapter of filtered" class="col-6 col-md-4 col-xl-2 card-container">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="gdg-header-image"></div>
+          <mat-card-title>{{ chapter.name }}</mat-card-title>
+          <mat-card-subtitle>{{ chapter.city }}, {{ chapter.country }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <a mat-button [routerLink]="['/', 'chapter', chapter.$key]">VIEW CHAPTER</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

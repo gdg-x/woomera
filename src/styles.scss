@@ -46,6 +46,30 @@ mat-card-title.mat-card-title {
   color: $text-grey;
 }
 
+mat-form-field {
+  &.full {
+    width: 100%;
+  }
+
+  &.mat-focused {
+    .mat-form-field-label {
+      color: $text-grey !important;
+    }
+
+    .mat-form-field-underline {
+      background-color: $text-grey !important;
+
+      .mat-form-field-ripple {
+        background-color: $text-grey !important;
+      }
+    }
+
+    input {
+      caret-color: $text-grey;
+    }
+  }
+}
+
 a {
   text-decoration: none;
 
@@ -54,12 +78,13 @@ a {
   }
 }
 
-section,
-div {
-  &:not(div) {
-    padding-bottom: 16px;
-  }
+section {
+  padding-bottom: 16px;
+}
 
+section,
+div,
+agm-map {
   &.over-banner {
     $more-margin: -128px;
 
@@ -84,16 +109,19 @@ div {
     background-color: $background-grey;
   }
 
-  .banner {
+  &.banner {
     padding: 0;
-    background: no-repeat #000000;
+    background: no-repeat white;
     background-size: cover;
     background-position: center;
-    background-image: url('./assets/gdg-header.png');
     height: 40vw;
     min-height: 256px;
     max-height: 512px;
     width: 100%;
+
+    &.generic {
+      background-image: url('./assets/gdg-header.png');
+    }
 
     &.overview {
       background-image: url('./assets/gdg-overview.jpg');
