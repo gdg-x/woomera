@@ -4,6 +4,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AngularFireModule, } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { NgMetaModule } from 'ngmeta';
 
 import { environment } from '@environment';
 
@@ -11,12 +12,14 @@ import { ChapterGuard } from '@guards/chapter.guard';
 
 import { ChaptersService } from '@services/chapters.service';
 import { LocationService } from '@services/location.service';
+import { MetaService } from '@services/meta.service';
 import { ToastService } from '@services/toast.service';
 
 const PROVIDERS = [
   ChapterGuard,
   ChaptersService,
   LocationService,
+  MetaService,
   ToastService
 ];
 
@@ -28,7 +31,8 @@ const PROVIDERS = [
     HttpClientJsonpModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    NgMetaModule.forRoot()
   ],
   providers: [
     { provide: FirestoreSettingsToken, useValue: {} }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ChaptersService } from '@services/chapters.service';
+import { MetaService } from '@services/meta.service';
 
 @Component({
   selector: 'gdg-chapter',
@@ -14,11 +15,14 @@ export class ChapterComponent implements OnInit, OnDestroy {
   private _events: any;
   private _keySubscription: Subscription;
 
-  constructor(private _cs: ChaptersService, private _route: ActivatedRoute) { }
+  constructor(private _cs: ChaptersService, private _meta: MetaService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this._keySubscription = this._route.params.subscribe((params: any) => {
-      this._cs.about(params.key).subscribe((about) => this._about = about);
+      this._cs.about(params.key).subscribe((about) => {
+        this._meta.set(about, params.key);
+        this._about = about;
+      });
       this._cs.events(params.key).subscribe((events) => this._events = events);
     });
   }

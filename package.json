@@ -31,6 +31,7 @@
     "fuzzysort": "^1.1.4",
     "geofirestore": "^3.3.1",
     "hammerjs": "^2.0.8",
+    "ngmeta": "^8.0.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
