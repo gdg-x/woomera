@@ -11,12 +11,16 @@ import { HomeComponent } from './home.component';
 
 import { NearbyChaptersComponent } from './nearby-chapters/nearby-chapters.component';
 import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
+import { OverviewComponent } from './overview/overview.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NearbyChaptersComponent,
-    ChaptersMapComponent
+    ChaptersMapComponent,
+    OverviewComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

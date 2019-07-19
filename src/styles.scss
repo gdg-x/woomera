@@ -1,34 +1,6 @@
 @import '~@angular/material/theming';
-$text-grey: #b4b4b4;
-$mat-white: (50: white,
-  100: white,
-  200: white,
-  300: white,
-  400: white,
-  500: white,
-  600: white,
-  700: white,
-  800: white,
-  900: white,
-  A100: white,
-  A200: white,
-  A400: white,
-  A700: white,
-  contrast: (50: $text-grey,
-    100: $text-grey,
-    200: $text-grey,
-    300: $text-grey,
-    400: $text-grey,
-    500: $text-grey,
-    600: $text-grey,
-    700: $text-grey,
-    800: $text-grey,
-    900: $text-grey,
-    A100: $text-grey,
-    A200: $text-grey,
-    A400: $text-grey,
-    A700: $text-grey,
-  ));
+@import './styles/mixins';
+@import './styles/variables';
 
 @include mat-core();
 $woomera-primary: mat-palette($mat-white);
@@ -49,8 +21,29 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-mat-toolbar.mat-toolbar {
+img {
+  &.full {
+    width: 100%;
+    height: auto;
+
+    &.thin {
+      @include thin;
+    }
+  }
+}
+
+mat-card-header {
+  img {
+    height: 32px;
+    margin-left: -32px;
+    margin-bottom: 16px;
+  }
+}
+
+mat-toolbar.mat-toolbar,
+mat-card-title.mat-card-title {
   font-family: "Product Sans", "Helvetica Neue", sans-serif;
+  color: $text-grey;
 }
 
 a {
@@ -61,24 +54,67 @@ a {
   }
 }
 
-section {
-  padding-top: 8px;
-  padding-bottom: 8px;
+section,
+div {
+  &:not(div) {
+    padding-bottom: 16px;
+  }
 
   &.over-banner {
-    margin-top: -48px;
-  }
-}
+    $more-margin: -128px;
 
-.banner {
-  padding: 0;
-  background: no-repeat #000000;
-  background-size: cover;
-  background-position: center;
-  height: 40vw;
-  width: 100%;
+    margin-top: -64px;
+
+    &.more {
+      margin-top: $more-margin;
+    }
+
+    &.more-sm {
+      @media screen and (max-width: 575px) {
+        margin-top: $more-margin;
+      }
+    }
+  }
+
+  &.white {
+    background-color: white;
+  }
+
+  &.grey {
+    background-color: $background-grey;
+  }
+
+  .banner {
+    padding: 0;
+    background: no-repeat #000000;
+    background-size: cover;
+    background-position: center;
+    background-image: url('./assets/gdg-header.png');
+    height: 40vw;
+    min-height: 256px;
+    max-height: 512px;
+    width: 100%;
+
+    &.overview {
+      background-image: url('./assets/gdg-overview.jpg');
+    }
+
+    &.thin {
+      @include thin;
+      height: 20vw;
+    }
+  }
 }
 
 .card-container {
   padding: 8px;
+}
+
+.gdg-header-image {
+  background-image: url('./assets/gdg-logo.jpg');
+  background-size: cover;
+}
+
+.mat-drawer-container {
+  background-color: $background-grey;
 }
