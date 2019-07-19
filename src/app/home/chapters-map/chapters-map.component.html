@@ -1,7 +1,7 @@
 <div class="banner">
   <agm-map class="banner" [latitude]="(coordinates$ | async)?.latitude" [longitude]="(coordinates$ | async)?.longitude"
     [zoom]="((coordinates$ | async)?.latitude || (coordinates$ | async)?.longitude) ? 12 : 2"
-    [streetViewControl]="false" gestureHandling="greedy" [zoomControl]="false">
+    [streetViewControl]="false" [zoomControl]="false">
     <agm-marker *ngFor="let chapter of chapters$ | async" [latitude]="chapter.coordinates.latitude"
       [longitude]="chapter.coordinates.longitude" [title]="chapter.name" (markerClick)="goToChapter(chapter.$key)">
     </agm-marker>
