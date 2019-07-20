@@ -10,6 +10,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AgmCoreModule } from '@agm/core';
 
+import { SharedModule } from '@shared';
+
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
@@ -39,7 +41,8 @@ import { AllChaptersComponent } from './all-chapters/all-chapters.component';
     MatListModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    AgmCoreModule
+    AgmCoreModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

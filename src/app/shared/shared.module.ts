@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BannerImagePipe } from './pipes/banner-image.pipe';
+import { InBrowserDirective } from './directives/in-browser.directive';
 
 @NgModule({
   declarations: [
-    BannerImagePipe
+    BannerImagePipe,
+    InBrowserDirective
   ],
   exports: [
-    BannerImagePipe
+    BannerImagePipe,
+    InBrowserDirective
   ],
   imports: [
     CommonModule
