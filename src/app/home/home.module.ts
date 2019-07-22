@@ -8,7 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LayoutModule } from '@angular/cdk/layout';
 import { AgmCoreModule } from '@agm/core';
+import { InViewportModule } from 'ng-in-viewport';
 
 import { SharedModule } from '@shared';
 
@@ -16,7 +18,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 import { NearbyChaptersComponent } from './nearby-chapters/nearby-chapters.component';
-import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
 import { AboutComponent } from './about/about.component';
 import { AllChaptersComponent } from './all-chapters/all-chapters.component';
 import { WwdComponent } from './wwd/wwd.component';
@@ -26,7 +27,6 @@ import { AboutVideoComponent } from './about-video/about-video.component';
   declarations: [
     HomeComponent,
     NearbyChaptersComponent,
-    ChaptersMapComponent,
     AboutComponent,
     AllChaptersComponent,
     WwdComponent,
@@ -43,7 +43,9 @@ import { AboutVideoComponent } from './about-video/about-video.component';
     MatListModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
+    LayoutModule,
     AgmCoreModule,
+    InViewportModule,
     SharedModule
   ]
 })

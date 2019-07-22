@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 
 import { ChaptersService } from '@services/chapters.service';
@@ -13,13 +15,18 @@ import WoomeraTypes from '@types';
   styleUrls: ['./nearby-chapters.component.scss']
 })
 export class NearbyChaptersComponent implements OnInit {
+  private _coordinates$: BehaviorSubject<firebase.firestore.GeoPoint> = new BehaviorSubject(new firebase.firestore.GeoPoint(0, 0));
   private _nearbyChapters$: Observable<WoomeraTypes.Chapter[]> = of();
   private _error = false;
 
-  constructor(private _cs: ChaptersService, private _ls: LocationService, private _toast: ToastService) { }
+  constructor(private _cs: ChaptersService, private _ls: LocationService, private _router: Router, private _toast: ToastService) { }
 
   ngOnInit() {
     this.fetchChapters();
+  }
+
+  get coordinates$(): Observable<firebase.firestore.GeoPoint> {
+    return this._coordinates$.asObservable();
   }
 
   get error(): boolean {
@@ -30,6 +37,10 @@ export class NearbyChaptersComponent implements OnInit {
     return this._nearbyChapters$;
   }
 
+  public goToChapter(key: string): void {
+    this._router.navigate(['/', 'chapter', key]);
+  }
+
   public fetchChapters(): void {
     this._error = false;
     this._nearbyChapters$ = this._ls.getCurrentPosition().pipe(
@@ -38,7 +49,13 @@ export class NearbyChaptersComponent implements OnInit {
         this._toast.make('Couldn\'t find your location');
         return of(null);
       }),
-      mergeMap((coords) => (coords) ? this._cs.findNear(coords) : of(null))
+      mergeMap((coords: firebase.firestore.GeoPoint) => {
+        if (coords) {
+          this._coordinates$.next(coords)
+          return this._cs.findNear(coords);
+        }
+        return of(null);
+      })
     );
   }
 }

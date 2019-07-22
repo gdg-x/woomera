@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'gdg-about',
@@ -6,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  constructor() { }
+  private _isHandset$: Observable<boolean> = this._breakpointObserver.observe(['(max-width: 599px)'])
+    .pipe(map(result => result.matches));
+
+  constructor(private _breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
+  }
+
+  get isHandset$(): Observable<boolean> {
+    return this._isHandset$;
   }
 }

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --aot && npm run build:ssr",
+    "build": "ng build --prod && npm run build:ssr",
     "build:ssr": "ng run woomera:server && npm run webpack:ssr",
     "webpack:ssr": "webpack --config webpack.server.config.js",
     "serve:ssr": "node dist/woomera-webpack/server.js",
@@ -35,6 +35,7 @@
     "fuzzysort": "^1.1.4",
     "geofirestore": "^3.3.1",
     "hammerjs": "^2.0.8",
+    "ng-in-viewport": "^6.0.3",
     "ngmeta": "^8.0.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.2",

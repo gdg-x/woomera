@@ -1,3 +1,16 @@
+<div class="banner" *gdgInBrowser="true"></div>
+
+<div class="banner">
+  <agm-map *gdgInBrowser gestureHandling="none" [latitude]="(coordinates$ | async)?.latitude"
+    [longitude]="(coordinates$ | async)?.longitude"
+    [zoom]="((coordinates$ | async)?.latitude || (coordinates$ | async)?.longitude) ? 12 : 2"
+    [streetViewControl]="false" [zoomControl]="false">
+    <agm-marker *ngFor="let chapter of nearbyChapters$ | async" [latitude]="chapter.coordinates.latitude"
+      [longitude]="chapter.coordinates.longitude" [title]="chapter.name" (markerClick)="goToChapter(chapter.$key)">
+    </agm-marker>
+  </agm-map>
+</div>
+
 <section class="over-banner">
   <div class="container">
     <div class="row">
@@ -19,7 +32,7 @@
     <mat-list>
       <div *ngFor="let chapter of nearbyChapters$ | async; last as last">
         <a mat-list-item [routerLink]="['/', 'chapter', chapter.$key]">
-          <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+          <img matListAvatar loading="lazy" src="./assets/gdg-logo.jpg" alt="GDG Logo">
           <h3 matLine>{{chapter.name}}</h3>
           <p matLine>{{chapter.city}}, {{chapter.country}}</p>
         </a>
@@ -34,7 +47,7 @@
     <mat-list>
       <div>
         <a mat-list-item target="_blank" href="https://developers.google.com/community/gdg/organizers/apply/">
-          <img matListAvatar src="./assets/gdg-logo.jpg" alt="GDG Logo">
+          <img matListAvatar loading="lazy" src="./assets/gdg-logo.jpg" alt="GDG Logo">
           <h3 matLine>There are no GDG chapters near you</h3>
           <p matLine>Why not start one?</p>
         </a>

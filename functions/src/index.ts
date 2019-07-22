@@ -7,9 +7,7 @@ admin.initializeApp({
 
 export * from './cron/chapters';
 export const universal = functions.https.onRequest((request, response) => {
-  if (!request.path) {
-    request.url = `/${request.url}`;
-  }
+  response.set('Cache-Control', 'public, max-age=3600, s-maxage=43200');
   require(`${process.cwd()}/dist/woomera-webpack/server`).app(
     request,
     response
