@@ -17,18 +17,18 @@ import { HomeComponent } from './home.component';
 
 import { NearbyChaptersComponent } from './nearby-chapters/nearby-chapters.component';
 import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
-import { OverviewComponent } from './overview/overview.component';
 import { AboutComponent } from './about/about.component';
 import { AllChaptersComponent } from './all-chapters/all-chapters.component';
+import { WwdComponent } from './wwd/wwd.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NearbyChaptersComponent,
     ChaptersMapComponent,
-    OverviewComponent,
     AboutComponent,
-    AllChaptersComponent
+    AllChaptersComponent,
+    WwdComponent
   ],
   imports: [
     CommonModule,
