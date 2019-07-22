@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { BannerImagePipe } from './pipes/banner-image.pipe';
 import { InBrowserDirective } from './directives/in-browser.directive';
+import { AspectRatioDirective } from './directives/aspect-ratio.directive';
 
 @NgModule({
   declarations: [
     BannerImagePipe,
-    InBrowserDirective
+    InBrowserDirective,
+    AspectRatioDirective
   ],
   exports: [
     BannerImagePipe,
-    InBrowserDirective
+    InBrowserDirective,
+    AspectRatioDirective
   ],
   imports: [
     CommonModule

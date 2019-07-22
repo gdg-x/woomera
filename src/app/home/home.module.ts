@@ -20,6 +20,7 @@ import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
 import { AboutComponent } from './about/about.component';
 import { AllChaptersComponent } from './all-chapters/all-chapters.component';
 import { WwdComponent } from './wwd/wwd.component';
+import { AboutVideoComponent } from './about-video/about-video.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { WwdComponent } from './wwd/wwd.component';
     ChaptersMapComponent,
     AboutComponent,
     AllChaptersComponent,
-    WwdComponent
+    WwdComponent,
+    AboutVideoComponent
   ],
   imports: [
     CommonModule,
