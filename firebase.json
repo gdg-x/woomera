@@ -1,23 +1,24 @@
 {
-  "hosting": [
-    {
-      "predeploy": "sh ./deploy.sh",
-      "target": "woomera",
-      "public": "dist/woomera",
-      "ignore": [
-        "index.html",
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "function": "universal"
-        }
-      ]
-    }
-  ],
+  "hosting": [{
+    "predeploy": "sh ./deploy.sh",
+    "target": "woomera",
+    "public": "dist/woomera",
+    "ignore": [
+      "index.html",
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [{
+      "source": "/sitemap.xml",
+      "destination": "https://firebasestorage.googleapis.com/v0/b/withgdg.appspot.com/o/sitemap.xml?alt=media",
+      "type": 301
+    }],
+    "rewrites": [{
+      "source": "**",
+      "function": "universal"
+    }]
+  }],
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"

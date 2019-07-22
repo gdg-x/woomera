@@ -20,8 +20,7 @@ export class MetaService {
   private _description(chapter: any): string {
     const description = (chapter.description || this._descriptionBase)
       .replace(/<[^>]*>/g, ' ')
-      .replace(/\s{2,}/g, ' ')
-      .trim().sub;
+      .replace(/\s{2,}/g, ' ');
     return (description.length <= 200) ? description : description.substring(0, 197) + '...';
   }
 
@@ -51,7 +50,7 @@ export class MetaService {
       title: this._title(chapter),
       canonical: this._canonical(path),
       meta: [
-        { type: 'description', content: this._description(chapter) },
+        { attribute: 'name', type: 'description', content: this._description(chapter) },
         ...this._twitter(chapter),
         ...this._openGraph(chapter, path)
       ]
@@ -60,10 +59,10 @@ export class MetaService {
 
   private _twitter(chapter: any = {}): MetaData[] {
     return [
-      { type: 'twitter:card', content: 'summary_large_image' },
-      { type: 'twitter:title', content: this._title(chapter) },
-      { type: 'twitter:description', content: this._description(chapter) },
-      { type: 'twitter:image:src', content: this._image(chapter) }
+      { attribute: 'name', type: 'twitter:card', content: 'summary_large_image' },
+      { attribute: 'name', type: 'twitter:title', content: this._title(chapter) },
+      { attribute: 'name', type: 'twitter:description', content: this._description(chapter) },
+      { attribute: 'name', type: 'twitter:image:src', content: this._image(chapter) }
     ];
   }
 }
