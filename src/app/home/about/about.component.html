@@ -6,7 +6,7 @@
         <mat-card-header>
           <img loading="lazy" src="./assets/gdg-logo-long.jpg" alt="GDG">
         </mat-card-header>
-        <img loading="lazy" class="d-block d-sm-none" mat-card-image src="./assets/gdg-global.jpg" alt="Photo of a GDG attendees">
+        <img loading="lazy" *ngIf="isHandset$ | async" mat-card-image src="./assets/gdg-global.jpg" alt="Photo of a GDG attendees">
         <mat-card-content>
           <p>Google Developer Groups (GDGs) are for developers who are interested in Google's developer technology;
             everything from the Android, Chrome, Drive, and Google Cloud platforms, to product APIs like the Cast API,
