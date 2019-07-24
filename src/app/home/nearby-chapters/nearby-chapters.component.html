@@ -17,15 +17,31 @@
       <div class="col-12">
         <mat-card>
           <mat-card-title>Nearby Chapters</mat-card-title>
-          <div *ngIf="!error && !(nearbyChapters$ | async); then loading"></div>
-          <div *ngIf="!error && (nearbyChapters$ | async)?.length > 0; then listChapters"></div>
-          <div *ngIf="!error && (nearbyChapters$ | async)?.length === 0; then noChapters"></div>
-          <div *ngIf="error; then errorTemplate"></div>
+          <div *ngIf="!(locationEnabled$ | async); then enableLocation"></div>
+          <div *ngIf="!error && (locationEnabled$ | async) && !(nearbyChapters$ | async); then loading"></div>
+          <div *ngIf="!error && (locationEnabled$ | async) && (nearbyChapters$ | async)?.length > 0; then listChapters"></div>
+          <div *ngIf="!error && (locationEnabled$ | async) && (nearbyChapters$ | async)?.length === 0; then noChapters"></div>
+          <div *ngIf="error && (locationEnabled$ | async); then errorTemplate"></div>
         </mat-card>
       </div>
     </div>
   </div>
 </section>
+
+<ng-template #enableLocation>
+  <mat-card-content>
+    <p>Can we use your location to find chapters near you?</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="fetchChapters()">YES</button>
+  </mat-card-actions>
+</ng-template>
+
+<ng-template #loading>
+  <mat-card-content>
+    <mat-spinner class="loading" color="accent"></mat-spinner>
+  </mat-card-content>
+</ng-template>
 
 <ng-template #listChapters>
   <mat-card-content>
@@ -48,7 +64,7 @@
       <div>
         <a mat-list-item target="_blank" href="https://developers.google.com/community/gdg/organizers/apply/">
           <img matListAvatar loading="lazy" src="./assets/gdg-logo.jpg" alt="GDG Logo">
-          <h3 matLine>There are no GDG chapters near you</h3>
+          <h3 matLine>There are no GDG chapters near you...</h3>
           <p matLine>Why not start one?</p>
         </a>
       </div>
@@ -56,17 +72,8 @@
   </mat-card-content>
 </ng-template>
 
-<ng-template #loading>
-  <mat-card-content>
-    <mat-spinner class="loading" color="accent"></mat-spinner>
-  </mat-card-content>
-</ng-template>
-
 <ng-template #errorTemplate>
   <mat-card-content>
     <p>We couldn't find any chapters near you, was your GPS off?</p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="fetchChapters()">TRY AGAIN</button>
-  </mat-card-actions>
 </ng-template>

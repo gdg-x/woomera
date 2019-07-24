@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
-  constructor() { }
+  private _locationEnabled$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  constructor() {
+    this._watchLocationEnabled();
+  }
+
+  get locationEnabled$(): Observable<boolean> {
+    return this._locationEnabled$.asObservable();
+  }
 
   public getCurrentPosition(): Observable<firebase.firestore.GeoPoint> {
     return new Observable((observer) => {
@@ -21,5 +29,22 @@ export class LocationService {
         observer.error(new Error('Geolocation API unavailable'));
       }
     });
+  }
+
+  private _watchLocationEnabled(): void {
+    if ((typeof window !== 'undefined') && 'permissions' in navigator) {
+      // @ts-ignore
+      navigator.permissions.query({name: 'geolocation'}).then((result) => {
+        this._locationEnabled$.next(result.state === 'granted');
+        const self = this;
+        result.onchange = function() {
+          self._locationEnabled$.next(this.state === 'granted');
+        };
+      }, () => {
+        this._locationEnabled$.next(false);
+      });
+    } else {
+      this._locationEnabled$.next(false);
+    }
   }
 }
