@@ -4,10 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChapterGuard } from '@guards/chapter.guard';
 
 import { ChapterComponent } from './chapter.component';
+import { ViewChapterComponent } from './view-chapter/view-chapter.component';
 
 const routes: Routes = [
-  { path: ':key', component: ChapterComponent, canActivate: [ChapterGuard] },
-  { path: '', redirectTo: '/' }
+  { path: '', pathMatch: 'full', component: ChapterComponent },
+  { path: ':key', component: ViewChapterComponent, canActivate: [ChapterGuard] }
 ];
 
 @NgModule({

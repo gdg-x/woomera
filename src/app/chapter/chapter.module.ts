@@ -9,10 +9,12 @@ import { SharedModule } from '@shared';
 
 import { ChapterRoutingModule } from './chapter-routing.module';
 import { ChapterComponent } from './chapter.component';
+import { ViewChapterComponent } from './view-chapter/view-chapter.component';
 
 @NgModule({
   declarations: [
-    ChapterComponent
+    ChapterComponent,
+    ViewChapterComponent
   ],
   imports: [
     CommonModule,
