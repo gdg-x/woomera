@@ -27,7 +27,8 @@ export const cronChapters = functions.pubsub.schedule('0 0 * * 0').onRun(() => {
       hostname: 'https://withgdg.com',
       cacheTime: 600000,
       urls: [
-        { url: '/', changefreq: 'monthly', priority: 1 }
+        { url: '/', changefreq: 'monthly', priority: 1 },
+        { url: '/chapter', changefreq: 'monthly', priority: 1 }
       ]
     });
 

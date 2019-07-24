@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     return this._isInViewport;
   }
 
-  public onIntersection({ target, visible }: { target: Element; visible: boolean }): void {
+  public onIntersection({ visible }: { visible: boolean }): void {
     this._isInViewport = this._isInViewport ? true : visible;
   }
 }

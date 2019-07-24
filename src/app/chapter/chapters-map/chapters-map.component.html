@@ -1,0 +1,26 @@
+<div class="banner" *gdgInBrowser="true"></div>
+
+<div class="banner">
+  <agm-map *gdgInBrowser gestureHandling="cooperative" [latitude]="0" [longitude]="0" [zoom]="2"
+    [streetViewControl]="false">
+    <agm-marker *ngFor="let chapter of chapters; trackBy: trackByFn" [latitude]="chapter.coordinates.latitude"
+      [longitude]="chapter.coordinates.longitude" [title]="chapter.name" (markerClick)="goToChapter(chapter.$key)">
+    </agm-marker>
+  </agm-map>
+</div>
+<div class="container over-banner more-sm">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>GDG Chapters Worldwide</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Search the map to find an active GDG chapter near you (has held events in the last 3 months). Visit each
+            GDG’s page to find more information about the group, events, and sign-up details.
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

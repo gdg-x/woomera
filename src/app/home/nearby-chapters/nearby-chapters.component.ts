@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { Observable, BehaviorSubject, Subscription, of } from 'rxjs';
-import { mergeMap, catchError, first } from 'rxjs/operators';
+import { mergeMap, catchError } from 'rxjs/operators';
 
 import { ChaptersService } from '@services/chapters.service';
 import { LocationService } from '@services/location.service';

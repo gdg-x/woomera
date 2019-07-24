@@ -1,0 +1,22 @@
+<section class="grey">
+  <gdg-chapters-map [chapters]="filtered"></gdg-chapters-map>
+</section>
+<section class="grey">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h2>There are more! ({{ total }} more exactly)</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6">
+        <mat-form-field class="full">
+          <input matInput placeholder="Search to see all our chapters below!" [(ngModel)]="name" (keyup)="search(name)">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="grey">
+  <gdg-list-chapters [chapters]="filtered"></gdg-list-chapters>
+</section>

@@ -21,6 +21,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+agm-map {
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
 img {
   &.full {
     width: 100%;
