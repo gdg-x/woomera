@@ -5,10 +5,10 @@ import 'reflect-metadata';
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 import * as express from 'express';
 import { join } from 'path';
-import { readFileSync } from 'fs';
 
 // Polyfills required for Firebase
 (global as any).WebSocket = require('ws');
@@ -28,17 +28,16 @@ const {
   LAZY_MODULE_MAP
 } = require(`./dist/${APP_NAME}-server/main`);
 
-// index.html template
-const template = readFileSync(
-  join(DIST_FOLDER, APP_NAME, 'index.html')
-).toString();
-
 app.engine(
   'html',
-  ngExpressEngine({
+  (_: any, options: any, callback: any) => ngExpressEngine({
     bootstrap: AppServerModuleNgFactory,
-    providers: [provideModuleMap(LAZY_MODULE_MAP)]
-  })
+    providers: [
+      provideModuleMap(LAZY_MODULE_MAP),
+      { provide: REQUEST, useValue: options.req },
+      { provide: RESPONSE, useValue: options.req.res }
+    ]
+  })(_, options, callback)
 );
 
 app.set('view engine', 'html');
@@ -49,6 +48,7 @@ app.get('*.*', express.static(join(DIST_FOLDER, APP_NAME)));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
+  // @ts-ignore
   res.render(join(DIST_FOLDER, APP_NAME, 'index.html'), { req });
 });
 

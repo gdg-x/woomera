@@ -20,7 +20,7 @@ export class ChapterGuard implements CanActivate, CanActivateChild {
       }),
       catchError(() => {
         this._toast.make('Chapter not found');
-        this._router.navigate(['/', 'chapter']);
+        this._router.navigate(['/', '404']);
         return of(false);
       })
     );
