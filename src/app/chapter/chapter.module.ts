@@ -16,13 +16,15 @@ import { ChapterComponent } from './chapter.component';
 import { ViewChapterComponent } from './view-chapter/view-chapter.component';
 import { ListChaptersComponent } from './list-chapters/list-chapters.component';
 import { ChaptersMapComponent } from './chapters-map/chapters-map.component';
+import { ViewEventComponent } from './view-event/view-event.component';
 
 @NgModule({
   declarations: [
     ChapterComponent,
     ViewChapterComponent,
     ListChaptersComponent,
-    ChaptersMapComponent
+    ChaptersMapComponent,
+    ViewEventComponent
   ],
   imports: [
     CommonModule,

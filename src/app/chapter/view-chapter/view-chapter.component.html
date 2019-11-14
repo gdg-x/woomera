@@ -28,7 +28,7 @@
           <mat-card-content>
             <mat-list>
               <div *ngFor="let event of events; last as last">
-                <a mat-list-item target="_blank" [href]="event.link" rel="noopener">
+                <a mat-list-item [routerLink]="['/', 'chapter', chapter, 'events', event.id]" rel="noopener">
                   <mat-icon mat-list-icon aria-hidden="false" aria-label="Event">calendar_today</mat-icon>
                   <h3 matLine>{{event.name}}</h3>
                   <p matLine>{{event.time | date}}</p>

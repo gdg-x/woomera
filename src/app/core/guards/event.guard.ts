@@ -9,17 +9,17 @@ import { ToastService } from '@services/toast.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ChapterGuard implements CanActivate, CanActivateChild {
+export class EventGuard implements CanActivate, CanActivateChild {
   constructor(private _cs: ChaptersService, private _router: Router, private _toast: ToastService) { }
 
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
-    return this._cs.findOne(next.params.chapter).pipe(
-      map((chapter) => {
-        if (!chapter) { throw Error(); }
+    return this._cs.findEvent(next.params.chapter, next.params.event).pipe(
+      map((event) => {
+        if (!event || event.errors) { throw Error(); }
         return true;
       }),
       catchError(() => {
-        this._toast.make('Chapter not found');
+        this._toast.make('Event not found');
         this._router.navigate(['/', '404']);
         return of(false);
       })

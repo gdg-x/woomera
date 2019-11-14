@@ -9,6 +9,7 @@ import { NgMetaModule } from 'ngmeta';
 import { environment } from '@environment';
 
 import { ChapterGuard } from '@guards/chapter.guard';
+import { EventGuard } from '@guards/event.guard';
 
 import { ChaptersService } from '@services/chapters.service';
 import { LocationService } from '@services/location.service';
@@ -17,6 +18,7 @@ import { ToastService } from '@services/toast.service';
 
 const PROVIDERS = [
   ChapterGuard,
+  EventGuard,
   ChaptersService,
   LocationService,
   MetaService,

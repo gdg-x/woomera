@@ -12,30 +12,45 @@ import { MetaService } from '@services/meta.service';
 })
 export class ViewChapterComponent implements OnInit, OnDestroy {
   private _about: any;
-  private _events: any;
-  private _keySubscription: Subscription;
+  private _chapter: string;
+  private _events: any[] = [];
+  private _paramSubscription: Subscription;
 
   constructor(private _cs: ChaptersService, private _meta: MetaService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
-    this._keySubscription = this._route.params.subscribe((params: any) => {
-      this._cs.about(params.key).subscribe((about) => {
-        this._meta.set(about, params.key);
-        this._about = about;
-      });
-      this._cs.events(params.key).subscribe((events) => this._events = events);
+    this._paramSubscription = this._route.params.subscribe({
+      next: (params: any) => {
+        this._chapter = params.chapter;
+        this._cs.about(this._chapter).subscribe({
+          next: (about) => {
+            this._meta.set({
+              ...about,
+              name: `${about.name} | With GDG`
+            }, this._chapter);
+            this._about = about;
+          }
+        });
+        this._cs.events(this._chapter).subscribe({
+          next: (events) => this._events = events
+        });
+      }
     });
   }
 
   ngOnDestroy() {
-    this._keySubscription.unsubscribe();
+    this._paramSubscription.unsubscribe();
   }
 
   get about(): any {
     return this._about;
   }
 
-  get events(): any {
+  get chapter(): string {
+    return this._chapter;
+  }
+
+  get events(): any[] {
     return this._events;
   }
 }

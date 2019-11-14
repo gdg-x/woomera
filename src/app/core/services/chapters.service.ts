@@ -32,16 +32,16 @@ export class ChaptersService {
     );
   }
 
-  public about(key: string): Observable<any> {
-    const url = 'https://api.meetup.com/' + key;
+  public about(chapter: string): Observable<any> {
+    const url = 'https://api.meetup.com/' + chapter;
     return (typeof window !== 'undefined'
       ? this._http.jsonp(url, 'callback')
       : this._http.get(url)
     ).pipe(map((result: any) => (result.data ? result.data : result)));
   }
 
-  public events(key: string): Observable<any> {
-    const url = 'https://api.meetup.com/' + key + '/events';
+  public events(chapter: string): Observable<any> {
+    const url = 'https://api.meetup.com/' + chapter + '/events';
     return (typeof window !== 'undefined'
       ? this._http.jsonp(url, 'callback')
       : this._http.get(url)
@@ -50,6 +50,14 @@ export class ChaptersService {
 
   public find(): Observable<WoomeraTypes.Chapter[]> {
     return this._chapters$;
+  }
+
+  public findEvent(chapter: string, event: string): Observable<any> {
+    const url = 'https://api.meetup.com/' + chapter + '/events/' + event;
+    return (typeof window !== 'undefined'
+      ? this._http.jsonp(url, 'callback')
+      : this._http.get(url)
+    ).pipe(map((result: any) => (result.data ? result.data : result)));
   }
 
   public findNear(

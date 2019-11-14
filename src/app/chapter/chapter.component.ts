@@ -21,7 +21,7 @@ export class ChapterComponent implements OnInit {
 
   ngOnInit() {
     this._meta.set({
-      name: 'Chapters',
+      name: 'Chapters | With GDG',
       description: 'Find an active GDG chapter near you. ' +
         'Visit each GDG’s page to find more information about the group, events, and sign-up details.'
     }, 'chapter');
