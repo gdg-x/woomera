@@ -1,8 +1,10 @@
+<pwa-install #pwaInstall showopen="true" manifestpath="manifest.webmanifest"></pwa-install>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport role="dialog" mode="over">
     <mat-toolbar>With GDG</mat-toolbar>
     <mat-nav-list>
       <a *ngFor="let path of paths" mat-list-item [routerLink]="path.link" (click)="drawer.close()">{{ path.name }}</a>
+      <mat-list-item *ngIf="displayInstall" (click)="pwaInstall.openPrompt() && drawer.toggle()">Install PWA</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -14,9 +16,10 @@
       <a class="inherit" [routerLink]="['/']">With {{ (isHandset$ | async) ? 'GDG' : 'Google Developer Group' }}</a>
       <span *ngIf="!(isHandset$ | async)" class="navbar-spacer"></span>
       <ng-template ngFor let-path [ngForOf]="paths">
-        <a *ngIf="!(isHandset$ | async) && !path.hideInNav" mat-button class="hide-small"
+        <a *ngIf="!(isHandset$ | async) && !path.hideInNav" mat-button
           [routerLink]="path.link">{{path.name}}</a>
       </ng-template>
+      <button *ngIf="!(isHandset$ | async) && displayInstall" mat-button (click)="pwaInstall.openPrompt()">Install PWA</button>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

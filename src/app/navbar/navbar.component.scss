@@ -20,3 +20,8 @@
 .navbar-spacer {
   flex: 1 1 auto;
 }
+
+pwa-install {
+  position: absolute;
+  --modal-z-index: 1000;
+}

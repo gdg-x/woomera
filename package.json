@@ -33,6 +33,7 @@
     "@angular/pwa": "^0.801.2",
     "@angular/router": "~8.1.2",
     "@angular/service-worker": "~8.1.2",
+    "@pwabuilder/pwainstall": "^0.9.9",
     "bootstrap": "^4.3.1",
     "firebase": "^6.3.1",
     "fuzzysort": "^1.1.4",

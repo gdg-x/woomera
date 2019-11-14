@@ -6,6 +6,7 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "description": "Find, connect, build. Join a developer community today.",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

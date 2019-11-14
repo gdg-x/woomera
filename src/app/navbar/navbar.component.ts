@@ -16,17 +16,27 @@ type Path = {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  private _displayInstall = false;
   @ViewChild('drawer', { static: true }) drawer: MatSidenav;
-  private _isHandset$: Observable<boolean> = this._breakpointObserver.observe(['(max-width: 599px)'])
+  private _isHandset$: Observable<boolean> = this._breakpointObserver
+    .observe(['(max-width: 599px)'])
     .pipe(map(result => result.matches));
   private _paths: Path[] = [
     { name: 'Home', link: ['/'], hideInNav: true },
     { name: 'Chapters', link: ['/', 'chapter'], hideInNav: false }
   ];
 
-  constructor(private _breakpointObserver: BreakpointObserver) { }
+  constructor(private _breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
+    this._displayInstall = !(
+      typeof window === 'undefined' ||
+      window.matchMedia('(display-mode: standalone)').matches
+    );
+  }
+
+  get displayInstall(): boolean {
+    return this._displayInstall;
   }
 
   get isHandset$(): Observable<boolean> {
@@ -39,13 +49,19 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:resize')
   public resize(): void {
-    if (typeof window !== 'undefined' && window.innerWidth >= 601 && this.drawer.opened) {
+    if (
+      typeof window !== 'undefined' &&
+      window.innerWidth >= 601 &&
+      this.drawer.opened
+    ) {
       this.drawer.close();
     }
   }
 
   @HostListener('swiperight')
   public swiperight(): void {
-    this._isHandset$.pipe(first()).subscribe((isHandset) => isHandset ? this.drawer.open() : null);
+    this._isHandset$
+      .pipe(first())
+      .subscribe(isHandset => (isHandset ? this.drawer.open() : null));
   }
 }
