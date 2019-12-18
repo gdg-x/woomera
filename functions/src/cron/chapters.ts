@@ -10,7 +10,7 @@ import request from '../shared/request';
 import WoomeraTypes from '../types';
 
 export const cronChapters = functions.pubsub.schedule('0 0 * * 0').onRun(() => {
-  const directoryUrl = 'https://google-developers.appspot.com/community/gdg/directory/directory.json';
+  const directoryUrl = 'https://developers-dot-devsite-v2-prod.appspot.com/community/gdg/groups/directory.json';
   return request({
     method: 'GET',
     url: directoryUrl
