@@ -3,13 +3,13 @@ import { Injectable, Inject } from '@angular/core';
 import { ɵgetDOM, ɵDomAdapter } from '@angular/platform-browser';
 import { NgMetaService, MetaData } from 'ngmeta';
 
-interface EventSchema {
+export interface EventSchema {
   '@context': 'https://schema.org';
   '@type': 'Event';
   name: string;
   startDate: string;
   endDate?: string;
-  location: {
+  location?: {
     '@type': 'Place';
     name: string;
     address: {

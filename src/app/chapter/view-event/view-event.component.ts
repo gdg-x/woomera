@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ChaptersService } from '@services/chapters.service';
-import { MetaService } from '@services/meta.service';
+import { MetaService, EventSchema } from '@services/meta.service';
 
 @Component({
   selector: 'gdg-view-event',
@@ -27,12 +27,17 @@ export class ViewEventComponent implements OnInit, OnDestroy {
               description: event.description,
               name: `${event.name} | ${event.group.name}`
             }, `chapter/${params.chapter}/events/${params.event}`);
-            this._meta.eventSchemaSet({
+            const schema: EventSchema = {
               '@context': 'https://schema.org',
               '@type': 'Event',
               name: event.name,
               startDate: new Date(event.time).toISOString(),
-              location: {
+              description: event.description,
+              url: `chapter/${params.chapter}/events/${params.event}`
+            };
+
+            if (event.venue) {
+              schema.location = {
                 '@type': 'Place',
                 name: event.venue.name ,
                 address: {
@@ -43,10 +48,10 @@ export class ViewEventComponent implements OnInit, OnDestroy {
                   addressRegion: event.venue.state,
                   addressCountry: event.venue.country.toUpperCase()
                 }
-              },
-              description: event.description,
-              url: `chapter/${params.chapter}/events/${params.event}`
-            });
+              };
+            }
+
+            this._meta.eventSchemaSet(schema);
             this._event = event;
           }
         });
